@@ -1,0 +1,25 @@
+# Node modules and environment
+node_modules/
+.env
+!.env-default
+
+# Editor and system files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log
+
+# Build and dependency files
+dist/
+coverage/
+*.tsbuildinfo
+
+# Package managers
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Misc
+*.bak
+*.swp
