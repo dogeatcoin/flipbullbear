@@ -1,0 +1,854 @@
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    color: #2d3436;
+    min-height: 100vh;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(40, 167, 69, 0.03) 0%, transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(220, 53, 69, 0.03) 0%, transparent 40%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Header styles */
+header {
+    background-color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+    position: relative;
+    z-index: 1;
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-container {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.flip {
+    background: linear-gradient(135deg, #28A745, #218838);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.mascots {
+    display: flex;
+    gap: 4px;
+}
+
+.bull {
+    color: #28A745;
+}
+
+.bear {
+    color: #DC3545;
+}
+
+.tagline {
+    font-size: 14px;
+    color: #6c757d;
+    font-weight: 500;
+}
+
+/* Wallet button styles */
+#wallet-connect button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #ffffff;
+    border: 2px solid #28A745;
+    border-radius: 12px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    color: #28A745;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+#wallet-connect button:hover {
+    background-color: #28A745;
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px rgba(40, 167, 69, 0.1);
+}
+
+#wallet-connect button.connected {
+    background-color: #28A745;
+    color: white;
+}
+
+.wallet-icon {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
+}
+
+#wallet-connect button:hover .wallet-icon {
+    transform: rotate(-10deg);
+}
+
+/* Container styles */
+.container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 1;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.game-info {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 100%;
+}
+
+/* Status message */
+#status {
+    color: #666;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.wallet-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+    justify-content: center;
+}
+
+.wallet-option {
+    padding: 12px 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: background-color 0.3s;
+}
+
+.wallet-option:hover {
+    background-color: #f5f5f5;
+}
+
+.wallet-option img {
+    width: 24px;
+    height: 24px;
+}
+
+#wallet-selector {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.wallet-modal {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 500px;
+    width: 100%;
+}
+
+.wallet-modal h2 {
+    margin-top: 0;
+    text-align: center;
+}
+
+.close-modal {
+    text-align: right;
+    cursor: pointer;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+/* Coin Pixel Art Styles */
+.coin-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 40px 0;
+    position: relative;
+    width: 225px;
+    height: 225px;
+    cursor: grab;
+    perspective: 1000px;
+}
+
+.coin-container:active {
+    cursor: grabbing;
+}
+
+.pixel-coin {
+    width: 180px;
+    height: 180px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 1.5s ease-out;
+    will-change: transform;
+}
+
+.coin-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: grid;
+    grid-template-rows: repeat(12, 1fr);
+    grid-template-columns: repeat(12, 1fr);
+    backface-visibility: hidden;
+}
+
+.heads {
+    background-color: #FFD700;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.tails {
+    background-color: #FFD700;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    transform: rotateY(180deg);
+}
+
+.pixel {
+    width: 100%;
+    height: 100%;
+}
+
+.coin-shine {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 50%);
+    pointer-events: none;
+}
+
+.flip {
+    animation: flip 1.5s forwards;
+}
+
+@keyframes flip {
+    0% {
+        transform: rotateY(0deg);
+    }
+
+    100% {
+        transform: rotateY(1080deg);
+    }
+}
+
+/* Visual cue for interactivity */
+.coin-container:hover::after {
+    content: '';
+}
+
+@keyframes hint {
+
+    0%,
+    100% {
+        transform: translateX(-5px);
+    }
+
+    50% {
+        transform: translateX(5px);
+    }
+}
+
+/* Pattern pixels */
+.h-center {
+    background-color: #FFCC00;
+    /* Gold base for coin */
+}
+
+.h-symbol {
+    background-color: #28A745;
+    /* Green for bull */
+}
+
+.t-center {
+    background-color: #FFCC00;
+    /* Gold base for coin */
+}
+
+.t-symbol {
+    background-color: #DC3545;
+    /* Red for bear */
+}
+
+/* Game area styles update */
+.game-area {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow:
+        0 8px 16px rgba(0, 0, 0, 0.03),
+        0 0 0 1px rgba(0, 0, 0, 0.02),
+        0 24px 32px rgba(0, 0, 0, 0.04);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* Coin Face Styling */
+.coin-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.heads {
+    background: linear-gradient(135deg, #FFD700, #FFC107);
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.tails {
+    background: linear-gradient(135deg, #FFD700, #FFC107);
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    transform: rotateY(180deg);
+}
+
+/* Animal Icons Styling */
+.animal-icon {
+    position: relative;
+    width: 80%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Bull Icon */
+.bull-icon {
+    color: #28A745;
+}
+
+.bull-head {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    background-color: #28A745;
+    border-radius: 30% 30% 50% 50%;
+}
+
+.bull-horns {
+    position: absolute;
+    width: 30px;
+    height: 20px;
+    background-color: #28A745;
+    border-radius: 50% 50% 0 0;
+    top: -15px;
+}
+
+.left-horn {
+    left: -20px;
+    transform: rotate(-30deg);
+}
+
+.right-horn {
+    right: -20px;
+    transform: rotate(30deg);
+}
+
+.bull-face {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.bull-eye {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-color: #fff;
+    border-radius: 50%;
+    top: 20px;
+}
+
+.bull-eye.left {
+    left: 12px;
+}
+
+.bull-eye.right {
+    right: 12px;
+}
+
+.bull-nose {
+    position: absolute;
+    width: 20px;
+    height: 12px;
+    background-color: #1a7431;
+    border-radius: 50%;
+    bottom: 15px;
+}
+
+.bull-body {
+    width: 80px;
+    height: 40px;
+    background-color: #28A745;
+    border-radius: 40% 40% 0 0;
+    margin-top: -5px;
+}
+
+.bull-legs {
+    width: 70px;
+    height: 15px;
+    background-color: #28A745;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Bear Icon */
+.bear-icon {
+    color: #DC3545;
+}
+
+.bear-head {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    background-color: #DC3545;
+    border-radius: 50%;
+}
+
+.bear-ears {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #DC3545;
+    border-radius: 50%;
+    top: -10px;
+}
+
+.left-ear {
+    left: 5px;
+}
+
+.right-ear {
+    right: 5px;
+}
+
+.bear-face {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.bear-eye {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-color: #fff;
+    border-radius: 50%;
+    top: 20px;
+}
+
+.bear-eye.left {
+    left: 12px;
+}
+
+.bear-eye.right {
+    right: 12px;
+}
+
+.bear-nose {
+    position: absolute;
+    width: 16px;
+    height: 10px;
+    background-color: #a52834;
+    border-radius: 50%;
+    top: 35px;
+}
+
+.bear-mouth {
+    position: absolute;
+    width: 24px;
+    height: 10px;
+    border: 2px solid #a52834;
+    border-top: none;
+    border-radius: 0 0 12px 12px;
+    bottom: 10px;
+}
+
+.bear-body {
+    width: 80px;
+    height: 50px;
+    background-color: #DC3545;
+    border-radius: 40%;
+    margin-top: -5px;
+}
+
+/* Trend Indicators */
+.trend-indicator {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.bull-trend {
+    color: #28A745;
+}
+
+.bear-trend {
+    color: #DC3545;
+}
+
+/* Position indicator below coin */
+.position-indicator {
+    margin-top: 20px;
+    padding: 8px 16px;
+    background-color: #f8f9fa;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 14px;
+    color: #495057;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.position-indicator:hover {
+    background-color: #e9ecef;
+}
+
+/* Wallet Message Styles */
+.wallet-message {
+    text-align: center;
+    padding: 20px;
+    font-size: 18px;
+    color: #666;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+/* Betting Form Styles */
+.betting-form {
+    margin-top: 20px;
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.betting-form.enabled {
+    opacity: 1;
+}
+
+.bet-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: rgba(248, 249, 250, 0.8);
+    border: 2px solid #e9ecef;
+    border-radius: 16px;
+    padding: 12px 20px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+.bet-input-wrapper:focus-within {
+    border-color: #28A745;
+    box-shadow: 0 0 0 4px rgba(40, 167, 69, 0.1);
+}
+
+#bet-amount {
+    width: 100%;
+    font-size: 18px;
+    padding: 8px;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+}
+
+#bet-amount::-webkit-inner-spin-button,
+#bet-amount::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.currency-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #495057;
+    font-weight: 500;
+    padding-left: 12px;
+    border-left: 2px solid #e9ecef;
+}
+
+.currency-label img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.bet-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+}
+
+.bet-button {
+    padding: 14px 28px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    min-width: 160px;
+    font-family: 'Inter', sans-serif;
+}
+
+.bet-button:hover:not(:disabled) {
+    transform: translateY(-2px);
+}
+
+.bet-button:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.bet-button.bull {
+    background-color: #28A745;
+    color: white;
+    box-shadow: 0 4px 6px rgba(40, 167, 69, 0.1);
+}
+
+.bet-button.bull:hover:not(:disabled) {
+    background-color: #218838;
+    box-shadow: 0 6px 8px rgba(40, 167, 69, 0.15);
+}
+
+.bet-button.bear {
+    background-color: #DC3545;
+    color: white;
+    box-shadow: 0 4px 6px rgba(220, 53, 69, 0.1);
+}
+
+.bet-button.bear:hover:not(:disabled) {
+    background-color: #C82333;
+    box-shadow: 0 6px 8px rgba(220, 53, 69, 0.15);
+}
+
+.bet-button:disabled {
+    background-color: #e9ecef;
+    color: #adb5bd;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Message Box Styles */
+.message-box {
+    width: 100%;
+    padding: 16px 20px;
+    margin: 15px 0;
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 48px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.message-box.has-message {
+    background-color: #f8f9fa;
+    border-color: #e9ecef;
+}
+
+.message-box.has-message:hover {
+    background-color: #f1f3f5;
+}
+
+.message-box.error {
+    background-color: #fff5f5;
+    border-color: #dc3545;
+}
+
+.message-box.error:hover {
+    background-color: #ffe5e5;
+}
+
+.message-icon {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.message-box.error .message-icon::before {
+    content: "×";
+    color: #dc3545;
+    font-size: 28px;
+    font-weight: bold;
+    line-height: 24px;
+}
+
+.message-text {
+    flex-grow: 1;
+    color: #495057;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.message-box.error .message-text {
+    color: #dc3545;
+}
+
+/* Message Popup Styles */
+.message-popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(4px);
+}
+
+.message-popup.show {
+    display: flex;
+}
+
+.message-popup-content {
+    background-color: #fff;
+    padding: 24px;
+    border-radius: 16px;
+    max-width: 600px;
+    width: 90%;
+    position: relative;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.close-popup {
+    position: absolute;
+    right: 20px;
+    top: 16px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #adb5bd;
+    transition: color 0.3s ease;
+}
+
+.close-popup:hover {
+    color: #495057;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .game-area {
+        padding: 24px;
+        border-radius: 20px;
+    }
+
+    .bet-buttons {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .bet-button {
+        width: 100%;
+    }
+
+    .logo {
+        font-size: 20px;
+    }
+
+    .tagline {
+        font-size: 12px;
+    }
+}

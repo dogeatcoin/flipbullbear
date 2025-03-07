@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlipBullBear - Coin Flip Game</title>
+    <link rel="icon" type="image/png" href="images/monad.png">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo-container">
+                <div class="logo">
+                    <span class="flip">Flip</span>
+                    <div class="mascots">
+                        <span class="bull">Bull</span>
+                        <span class="bear">Bear</span>
+                    </div>
+                </div>
+                <span class="tagline">Flip the odds in your favor</span>
+            </div>
+            <div id="wallet-connect">
+                <button id="connect-wallet">
+                    <img src="images/metamask-fox.svg" alt="MetaMask" class="wallet-icon">
+                    <span>Connect Wallet</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="game-area">
+            <div class="coin-container">
+                <div class="pixel-coin" id="coin">
+                    <!-- Heads Side -->
+                    <div class="coin-face heads" id="heads">
+                    </div>
+
+                    <!-- Tails Side -->
+                    <div class="coin-face tails" id="tails">
+                    </div>
+
+                    <!-- Shine effect -->
+                    <div class="coin-shine"></div>
+                </div>
+            </div>
+
+            <!-- Message Box -->
+            <div class="message-box">
+                <span class="message-icon"></span>
+                <span class="message-text" id="status"></span>
+            </div>
+
+            <!-- Betting Form -->
+            <div class="betting-form">
+                <div class="bet-input-wrapper">
+                    <input type="number" id="bet-amount" min="0" step="0.01" value="0.1" placeholder="Enter bet amount">
+                    <span class="currency-label">
+                        <img src="images/monad.png" alt="MONAD" />
+                    </span>
+                </div>
+                <div class="bet-buttons">
+                    <button id="bet-bull" class="bet-button bull">Bet on Bull</button>
+                    <button id="bet-bear" class="bet-button bear">Bet on Bear</button>
+                </div>
+            </div>
+
+            <div class="game-buttons">
+                <button id="flip-button" style="display: none;">Flip Coin</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Message Popup -->
+    <div id="message-popup" class="message-popup">
+        <div class="message-popup-content">
+            <span class="close-popup">&times;</span>
+            <p id="popup-message"></p>
+        </div>
+    </div>
+
+    <!-- Web3Modal Dependencies -->
+    <script src="https://unpkg.com/web3@latest/dist/web3.min.js"></script>
+
+    <!-- Custom script -->
+    <script src="js/wallets.js"></script>
+    <script src="js/coin.js"></script>
+</body>
+
+</html>

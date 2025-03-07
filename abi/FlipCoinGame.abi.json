@@ -1,0 +1,171 @@
+{
+    "name": "FlipCoinGame",
+    "address": "0x9f6843cA93a01B1f258611ee3a50bC5409CD96B9",
+    "abi": [
+        {
+            "inputs": [],
+            "name": "addLiquidity",
+            "outputs": [],
+            "stateMutability": "payable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "_maxBet",
+                    "type": "uint256"
+                }
+            ],
+            "stateMutability": "payable",
+            "type": "constructor"
+        },
+        {
+            "inputs": [],
+            "name": "ReentrancyGuardReentrantCall",
+            "type": "error"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": true,
+                    "internalType": "address",
+                    "name": "player",
+                    "type": "address"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "uint256",
+                    "name": "amount",
+                    "type": "uint256"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "bool",
+                    "name": "won",
+                    "type": "bool"
+                }
+            ],
+            "name": "BetPlaced",
+            "type": "event"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": false,
+                    "internalType": "uint256",
+                    "name": "amount",
+                    "type": "uint256"
+                }
+            ],
+            "name": "LiquidityAdded",
+            "type": "event"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": false,
+                    "internalType": "uint256",
+                    "name": "amount",
+                    "type": "uint256"
+                }
+            ],
+            "name": "LiquidityRemoved",
+            "type": "event"
+        },
+        {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": false,
+                    "internalType": "uint256",
+                    "name": "newMaxBet",
+                    "type": "uint256"
+                }
+            ],
+            "name": "MaxBetUpdated",
+            "type": "event"
+        },
+        {
+            "inputs": [],
+            "name": "play",
+            "outputs": [],
+            "stateMutability": "payable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "amount",
+                    "type": "uint256"
+                }
+            ],
+            "name": "removeLiquidity",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "_maxBet",
+                    "type": "uint256"
+                }
+            ],
+            "name": "setMaxBet",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "stateMutability": "payable",
+            "type": "receive"
+        },
+        {
+            "inputs": [],
+            "name": "houseLiquidity",
+            "outputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "maxBet",
+            "outputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "owner",
+            "outputs": [
+                {
+                    "internalType": "address",
+                    "name": "",
+                    "type": "address"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        }
+    ],
+    "filePath": "CoinFlip/contracts/1_FlipCoinGame.sol",
+    "pinnedAt": 1741123576506
+}
